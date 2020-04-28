@@ -1,0 +1,29 @@
+#include "arraykey.h"
+
+
+/**********************************/
+//按键矩阵带中断-----------说明使用
+//1.不需要包含#include "reg51.h"
+//2.main（）中调用全局变量key，切记不是声明，extern unsigned char key;
+//3.使用初使化函数arrayKey_init();
+//4.注意*此头文件包含中断，调用立即开启外部中断1
+/**********************************/
+
+//IO连接
+
+#define  Led P2
+
+extern unsigned char key;
+
+   
+
+void main()
+{ 
+
+  arrayKey_init();
+	P2=0x01;
+	while(1)
+	{
+  P2=(0x01<<key-0x01);
+	}   
+}
